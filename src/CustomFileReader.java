@@ -1,8 +1,23 @@
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 
-public class FileReader {
+public class CustomFileReader {
+
+    public static ArrayList findAllFilesbyMask(String mask) {
+        ArrayList<String> result = new ArrayList<String>();
+        String[] pathnames;
+        File f = new File("resources/");
+        pathnames = f.list();
+        for (String pathname : pathnames) {
+            if (pathname.startsWith(mask)) {
+                result.add(f + "/" + pathname);
+            }
+        }
+        return result;
+    }
 
     public static String readFileContentsOrNull(String path)
     {

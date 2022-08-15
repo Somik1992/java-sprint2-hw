@@ -8,9 +8,10 @@ public class Main {
         while (true) {
             printMenu();
             int command = scanner.nextInt();
-            if (command == 1){
+            if (command == 1) {
                 System.out.println("1");
             } else if (command == 2) {
+                YearlyReport.readYerlyFile();
                 System.out.println("2");
             } else if (command == 3) {
                 System.out.println("3");
