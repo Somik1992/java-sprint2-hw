@@ -10,6 +10,7 @@ public class Main {
             int command = scanner.nextInt();
             if (command == 1) {
                 System.out.println("1");
+                MonthlyReport.readMounthlyFile();
             } else if (command == 2) {
                 YearlyReport.readYerlyFile();
                 System.out.println("2");

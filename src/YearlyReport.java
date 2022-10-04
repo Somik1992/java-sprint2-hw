@@ -14,10 +14,11 @@ public class YearlyReport {
         ArrayList<String> names = CustomFileReader.findAllFilesbyMask(mask);
         for (String name : names) {
             String file = CustomFileReader.readFileContentsOrNull(name);
-            String[] lines = file.split("\r\n");
-            ArrayList<Integer> report = new ArrayList<>();
+            String[] lines = file.split("\n");
+            ArrayList<Integer> report = new ArrayList<>();;
             String month = "";
             for (int i = 1; i < lines.length; i++) {
+
                 String[] line = lines[i].split(",");
                 int amount = Integer.parseInt(line[1]);
                 boolean isExpense = Boolean.parseBoolean(line[2]);
@@ -25,21 +26,17 @@ public class YearlyReport {
                 if (isExpense) {
                     amount = -1 * amount;
                 }
-
-                if (Objects.equals(month, line[0]) || month.isEmpty()) {
-                    report.add(amount);
+                if (Objects.equals(line[0], month) || month.isEmpty()) {
                     month = line[0];
+                    report.add(amount);
                     yearlyReport.put(month, report);
                 } else {
-                    report.clear();
-                    report.add(amount);
+                    report = new ArrayList<>();
                     month = line[0];
+                    report.add(amount);
                 }
-
             }
-            System.out.println(yearlyReport);
-            
+            System.out.println("Годовой отчет считан");
         }
     }
-
 }
