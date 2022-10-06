@@ -9,17 +9,15 @@ public class Main {
             printMenu();
             int command = scanner.nextInt();
             if (command == 1) {
-                System.out.println("1");
                 MonthlyReport.readMounthlyFile();
             } else if (command == 2) {
                 YearlyReport.readYerlyFile();
-                System.out.println("2");
             } else if (command == 3) {
                 System.out.println("3");
             } else if (command == 4) {
                 System.out.println("4");
             } else if (command == 5) {
-                System.out.println("5");
+                YearlyReport.printYearlyReport();
             } else if (command == 0) {
                 System.out.println("Выход");
                 break;
