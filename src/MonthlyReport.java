@@ -32,8 +32,32 @@ public class MonthlyReport {
                 TotalReport.put(name.split("/")[1].substring(6, 8), MonthlyReport);
                 report = new ArrayList<>();
             }
-            System.out.println("Месячный отчет за" + name.split("/")[1].substring(6, 8) + "считан");
+            System.out.println("Месячный отчет за " + name.split("/")[1].substring(6, 8) + " считан");
             MonthlyReport = new HashMap<>();
         }
+    }
+
+    public static void printMountlyReport() {
+        int maxExpenses = 0;
+        String maxExpensesItem = "";
+        int maxRevenue = 0;
+        String maxRevenueItem = "";
+        for (String month : TotalReport.keySet()) {
+            System.out.println("-------------Отчет за " + month + " месяц-------------");
+            HashMap<String, ArrayList<Integer>> expenses = TotalReport.get(month);
+            for (String item: expenses.keySet()) {
+                System.out.println(item + " = " + expenses.get(item).get(0));
+                if (expenses.get(item).get(0) >= maxRevenue) {
+                    maxRevenue = expenses.get(item).get(0);
+                    maxRevenueItem = item;
+                } else if (expenses.get(item).get(0) <= maxExpenses) {
+                    maxExpenses = expenses.get(item).get(0);
+                    maxExpensesItem = item;
+                }
+            }
+        }
+        System.out.println();
+        System.out.println("Больше всего выручки принес " + "'" + maxRevenueItem + "'" + " с выручкой = " + maxRevenue);
+        System.out.println("Больше всего убытков принес " + "'" + maxExpensesItem + "'" + " с убытком = " + maxExpenses);
     }
 }

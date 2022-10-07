@@ -13,9 +13,9 @@ public class Main {
             } else if (command == 2) {
                 YearlyReport.readYerlyFile();
             } else if (command == 3) {
-                System.out.println("3");
+                Reconciliation.reconcilReport();
             } else if (command == 4) {
-                System.out.println("4");
+                MonthlyReport.printMountlyReport();
             } else if (command == 5) {
                 YearlyReport.printYearlyReport();
             } else if (command == 0) {
