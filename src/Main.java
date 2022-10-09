@@ -20,7 +20,6 @@ public class Main {
                 YearlyReport.printYearlyReport();
             } else if (command == 0) {
                 System.out.println("Выход");
-                break;
             } else {
                 System.out.println("Такой команды пока нет");
             }

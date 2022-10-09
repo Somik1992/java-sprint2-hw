@@ -19,13 +19,16 @@ public class CustomFileReader {
         return result;
     }
 
-    public static String readFileContentsOrNull(String path)
-    {
+    public static String readFileContentsOrNull(String path)  {
         try {
             return Files.readString(Path.of(path));
         } catch (IOException e) {
             System.out.println("Невозможно прочитать файл с месячным отчётом. Возможно, файл не находится в нужной директории.");
             return null;
         }
+    }
+
+    public static boolean checkReports () {
+        return YearlyReport.yearlyReport.isEmpty() || MonthlyReport.TotalReport.isEmpty();
     }
 }

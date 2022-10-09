@@ -40,28 +40,32 @@ public class YearlyReport {
     }
 
     public static void printYearlyReport() {
-        int totalExpenses = 0;
-        int totalRevenue = 0;
-        for (String month : yearlyReport.keySet()) {
-            System.out.println("-------------Отчет за " + month + " месяц-------------");
-            ArrayList<Integer> expenses = yearlyReport.get(month);
-            int profit = 0;
-            for (Integer expense : expenses) {
-                if (expense >= 0) {
-                    System.out.println("Доходы = " + expense);
-                    totalRevenue += expense;
-                } else {
-                    System.out.println("Расходы = " + expense);
-                    totalExpenses += expense;
+        if (CustomFileReader.checkReports()) {
+            System.out.println("Сначала нужно закачать месячные и годовый отчет");
+        } else {
+            int totalExpenses = 0;
+            int totalRevenue = 0;
+            for (String month : yearlyReport.keySet()) {
+                System.out.println("-------------Отчет за " + month + " месяц-------------");
+                ArrayList<Integer> expenses = yearlyReport.get(month);
+                int profit = 0;
+                for (Integer expense : expenses) {
+                    if (expense >= 0) {
+                        System.out.println("Доходы = " + expense);
+                        totalRevenue += expense;
+                    } else {
+                        System.out.println("Расходы = " + expense);
+                        totalExpenses += expense;
+                    }
+                    profit = profit + expense;
                 }
-                profit = profit + expense;
+                System.out.println("Прибыль за " + month + " месяц = " + profit);
+                System.out.println("");
             }
-            System.out.println("Прибыль за " + month + " месяц = " + profit);
+            System.out.println("---------------Итого по году---------------");
+            System.out.println("Средняя выручка в месяц = " + totalRevenue / yearlyReport.size());
+            System.out.println("Средние расходы в месяц = " + totalExpenses / yearlyReport.size());
             System.out.println("");
         }
-        System.out.println("---------------Итого по году---------------");
-        System.out.println("Средняя выручка в месяц = " + totalRevenue / yearlyReport.size());
-        System.out.println("Средние расходы в месяц = " + totalExpenses / yearlyReport.size());
-        System.out.println("");
     }
 }

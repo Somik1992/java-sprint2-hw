@@ -19,7 +19,7 @@ public class MonthlyReport {
             for (int i = 1; i < lines.length; i++) {
 
                 String[] line = lines[i].split(",");
-                int amount = Integer.parseInt(line[3]);
+                int amount = Integer.parseInt(line[3].strip());
                 boolean isExpense = Boolean.parseBoolean(line[1]);
                 int quantity = Integer.parseInt(line[2]);
 
@@ -38,26 +38,29 @@ public class MonthlyReport {
     }
 
     public static void printMountlyReport() {
-        int maxExpenses = 0;
-        String maxExpensesItem = "";
-        int maxRevenue = 0;
-        String maxRevenueItem = "";
-        for (String month : TotalReport.keySet()) {
-            System.out.println("-------------Отчет за " + month + " месяц-------------");
-            HashMap<String, ArrayList<Integer>> expenses = TotalReport.get(month);
-            for (String item: expenses.keySet()) {
-                System.out.println(item + " = " + expenses.get(item).get(0));
-                if (expenses.get(item).get(0) >= maxRevenue) {
-                    maxRevenue = expenses.get(item).get(0);
-                    maxRevenueItem = item;
-                } else if (expenses.get(item).get(0) <= maxExpenses) {
-                    maxExpenses = expenses.get(item).get(0);
-                    maxExpensesItem = item;
+        if (CustomFileReader.checkReports()) {
+            System.out.println("Сначала нужно закачать месячные и годовый отчет");
+        } else {
+            for (String month : TotalReport.keySet()) {
+                int maxExpenses = 0;
+                String maxExpensesItem = "";
+                int maxRevenue = 0;
+                String maxRevenueItem = "";
+                System.out.println("-------------Отчет за " + month + " месяц-------------");
+                HashMap<String, ArrayList<Integer>> expenses = TotalReport.get(month);
+                for (String item: expenses.keySet()) {
+                    System.out.println(item + " = " + expenses.get(item).get(0));
+                    if (expenses.get(item).get(0) >= maxRevenue) {
+                        maxRevenue = expenses.get(item).get(0);
+                        maxRevenueItem = item;
+                    } else if (expenses.get(item).get(0) <= maxExpenses) {
+                        maxExpenses = expenses.get(item).get(0);
+                        maxExpensesItem = item;
+                    }
                 }
+                System.out.println("Больше всего выручки принес " + "'" + maxRevenueItem + "'" + " с выручкой = " + maxRevenue);
+                System.out.println("Больше всего убытков принес " + "'" + maxExpensesItem + "'" + " с убытком = " + maxExpenses);
             }
         }
-        System.out.println();
-        System.out.println("Больше всего выручки принес " + "'" + maxRevenueItem + "'" + " с выручкой = " + maxRevenue);
-        System.out.println("Больше всего убытков принес " + "'" + maxExpensesItem + "'" + " с убытком = " + maxExpenses);
     }
 }
