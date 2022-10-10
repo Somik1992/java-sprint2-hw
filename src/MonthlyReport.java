@@ -13,7 +13,7 @@ public class MonthlyReport {
         ArrayList<String> names = CustomFileReader.findAllFilesbyMask(mask);
         for (String name : names) {
             String file = CustomFileReader.readFileContentsOrNull(name);
-            String[] lines = file.split("\n");
+            String[] lines = file.split("\r?\n");
             ArrayList<Integer> report = new ArrayList<>();
             String item = "";
             for (int i = 1; i < lines.length; i++) {
@@ -32,21 +32,21 @@ public class MonthlyReport {
                 TotalReport.put(name.split("/")[1].substring(6, 8), MonthlyReport);
                 report = new ArrayList<>();
             }
-            System.out.println("РњРµСЃСЏС‡РЅС‹Р№ РѕС‚С‡РµС‚ Р·Р° " + name.split("/")[1].substring(6, 8) + " СЃС‡РёС‚Р°РЅ");
+            System.out.println("Месячный отчет за " + name.split("/")[1].substring(6, 8) + " считан");
             MonthlyReport = new HashMap<>();
         }
     }
 
     public static void printMountlyReport() {
         if (CustomFileReader.checkReports()) {
-            System.out.println("РЎРЅР°С‡Р°Р»Р° РЅСѓР¶РЅРѕ Р·Р°РєР°С‡Р°С‚СЊ РјРµСЃСЏС‡РЅС‹Рµ Рё РіРѕРґРѕРІС‹Р№ РѕС‚С‡РµС‚");
+            System.out.println("Сначала нужно закачать месячные и годовый отчет");
         } else {
             for (String month : TotalReport.keySet()) {
                 int maxExpenses = 0;
                 String maxExpensesItem = "";
                 int maxRevenue = 0;
                 String maxRevenueItem = "";
-                System.out.println("-------------РћС‚С‡РµС‚ Р·Р° " + month + " РјРµСЃСЏС†-------------");
+                System.out.println("-------------Отчет за " + month + " месяц-------------");
                 HashMap<String, ArrayList<Integer>> expenses = TotalReport.get(month);
                 for (String item: expenses.keySet()) {
                     System.out.println(item + " = " + expenses.get(item).get(0));
@@ -58,8 +58,8 @@ public class MonthlyReport {
                         maxExpensesItem = item;
                     }
                 }
-                System.out.println("Р‘РѕР»СЊС€Рµ РІСЃРµРіРѕ РІС‹СЂСѓС‡РєРё РїСЂРёРЅРµСЃ " + "'" + maxRevenueItem + "'" + " СЃ РІС‹СЂСѓС‡РєРѕР№ = " + maxRevenue);
-                System.out.println("Р‘РѕР»СЊС€Рµ РІСЃРµРіРѕ СѓР±С‹С‚РєРѕРІ РїСЂРёРЅРµСЃ " + "'" + maxExpensesItem + "'" + " СЃ СѓР±С‹С‚РєРѕРј = " + maxExpenses);
+                System.out.println("Больше всего выручки принес " + "'" + maxRevenueItem + "'" + " с выручкой = " + maxRevenue);
+                System.out.println("Больше всего убытков принес " + "'" + maxExpensesItem + "'" + " с убытком = " + maxExpenses);
             }
         }
     }

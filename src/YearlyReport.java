@@ -13,7 +13,7 @@ public class YearlyReport {
         ArrayList<String> names = CustomFileReader.findAllFilesbyMask(mask);
         for (String name : names) {
             String file = CustomFileReader.readFileContentsOrNull(name);
-            String[] lines = file.split("\n");
+            String[] lines = file.split("\r?\n");
             ArrayList<Integer> report = new ArrayList<>();;
             String month = "";
             for (int i = 1; i < lines.length; i++) {
@@ -35,36 +35,36 @@ public class YearlyReport {
                     report.add(amount);
                 }
             }
-            System.out.println("Р“РѕРґРѕРІРѕР№ РѕС‚С‡РµС‚ СЃС‡РёС‚Р°РЅ");
+            System.out.println("Годовой отчет считан");
         }
     }
 
     public static void printYearlyReport() {
         if (CustomFileReader.checkReports()) {
-            System.out.println("РЎРЅР°С‡Р°Р»Р° РЅСѓР¶РЅРѕ Р·Р°РєР°С‡Р°С‚СЊ РјРµСЃСЏС‡РЅС‹Рµ Рё РіРѕРґРѕРІС‹Р№ РѕС‚С‡РµС‚");
+            System.out.println("Сначала нужно закачать месячные и годовый отчет");
         } else {
             int totalExpenses = 0;
             int totalRevenue = 0;
             for (String month : yearlyReport.keySet()) {
-                System.out.println("-------------РћС‚С‡РµС‚ Р·Р° " + month + " РјРµСЃСЏС†-------------");
+                System.out.println("-------------Отчет за " + month + " месяц-------------");
                 ArrayList<Integer> expenses = yearlyReport.get(month);
                 int profit = 0;
                 for (Integer expense : expenses) {
                     if (expense >= 0) {
-                        System.out.println("Р”РѕС…РѕРґС‹ = " + expense);
+                        System.out.println("Доходы = " + expense);
                         totalRevenue += expense;
                     } else {
-                        System.out.println("Р Р°СЃС…РѕРґС‹ = " + expense);
+                        System.out.println("Расходы = " + expense);
                         totalExpenses += expense;
                     }
                     profit = profit + expense;
                 }
-                System.out.println("РџСЂРёР±С‹Р»СЊ Р·Р° " + month + " РјРµСЃСЏС† = " + profit);
+                System.out.println("Прибыль за " + month + " месяц = " + profit);
                 System.out.println("");
             }
-            System.out.println("---------------РС‚РѕРіРѕ РїРѕ РіРѕРґСѓ---------------");
-            System.out.println("РЎСЂРµРґРЅСЏСЏ РІС‹СЂСѓС‡РєР° РІ РјРµСЃСЏС† = " + totalRevenue / yearlyReport.size());
-            System.out.println("РЎСЂРµРґРЅРёРµ СЂР°СЃС…РѕРґС‹ РІ РјРµСЃСЏС† = " + totalExpenses / yearlyReport.size());
+            System.out.println("---------------Итого по году---------------");
+            System.out.println("Средняя выручка в месяц = " + totalRevenue / yearlyReport.size());
+            System.out.println("Средние расходы в месяц = " + totalExpenses / yearlyReport.size());
             System.out.println("");
         }
     }

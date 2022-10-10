@@ -19,9 +19,9 @@ public class Main {
             } else if (command == 5) {
                 YearlyReport.printYearlyReport();
             } else if (command == 0) {
-                System.out.println("Р’С‹С…РѕРґ");
+                System.out.println("Выход");
             } else {
-                System.out.println("РўР°РєРѕР№ РєРѕРјР°РЅРґС‹ РїРѕРєР° РЅРµС‚");
+                System.out.println("Такой команды пока нет");
             }
         }
     }
@@ -29,13 +29,13 @@ public class Main {
 
 
     public static void printMenu() {
-        System.out.println("Р§С‚Рѕ РІС‹ С…РѕС‚РёС‚Рµ СЃРґРµР»Р°С‚СЊ? ");
-        System.out.println("1 - РЎС‡РёС‚Р°С‚СЊ РІСЃРµ РјРµСЃСЏС‡РЅС‹Рµ РѕС‚С‡С‘С‚С‹");
-        System.out.println("2 - РЎС‡РёС‚Р°С‚СЊ РіРѕРґРѕРІРѕР№ РѕС‚С‡С‘С‚");
-        System.out.println("3 - РЎРІРµСЂРёС‚СЊ РѕС‚С‡С‘С‚С‹");
-        System.out.println("4 - Р’С‹РІРµСЃС‚Рё РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ РІСЃРµС… РјРµСЃСЏС‡РЅС‹С… РѕС‚С‡С‘С‚Р°С…");
-        System.out.println("5 - Р’С‹РІРµСЃС‚Рё РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ РіРѕРґРѕРІРѕРј РѕС‚С‡С‘С‚Рµ");
-        System.out.println("0 - Р’С‹Р№С‚Рё РёС… РїСЂРёР»РѕР¶РµРЅРёСЏ");
+        System.out.println("Что вы хотите сделать? ");
+        System.out.println("1 - Считать все месячные отчёты");
+        System.out.println("2 - Считать годовой отчёт");
+        System.out.println("3 - Сверить отчёты");
+        System.out.println("4 - Вывести информацию о всех месячных отчётах");
+        System.out.println("5 - Вывести информацию о годовом отчёте");
+        System.out.println("0 - Выйти их приложения");
     }
 }
 

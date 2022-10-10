@@ -7,7 +7,7 @@ public class Reconciliation {
     public static void reconcilReport() {
 
         if (CustomFileReader.checkReports()) {
-            System.out.println("РЎРЅР°С‡Р°Р»Р° РЅСѓР¶РЅРѕ Р·Р°РєР°С‡Р°С‚СЊ РјРµСЃСЏС‡РЅС‹Рµ Рё РіРѕРґРѕРІС‹Р№ РѕС‚С‡РµС‚");
+            System.out.println("Сначала нужно закачать месячные и годовый отчет");
         } else {
 
             for (String month: YearlyReport.yearlyReport.keySet()) {
@@ -27,18 +27,18 @@ public class Reconciliation {
                 }
             }
             if (reconcileYearlyReport.equals(reconcileMountlyReport)) {
-                System.out.println("Р РµРєРѕРЅСЃРёР»СЏС†РёСЏ РїСЂРѕС€Р»Р° СѓСЃРїРµС€РЅРѕ, РґР°РЅРЅС‹Рµ РІРµСЂРЅС‹");
+                System.out.println("Реконсиляция прошла успешно, данные верны");
             } else {
                 if (reconcileYearlyReport.size() == reconcileMountlyReport.size()) {
                     for (String mounth : reconcileMountlyReport.keySet()) {
                         if (!reconcileMountlyReport.get(mounth).equals(reconcileYearlyReport.get(mounth))) {
-                            System.out.println("РћС€РёР±РєР° СЂРµРєРѕРЅСЃРёР»СЏС†РёРё");
-                            System.out.println("РџСЂРѕР±Р»РµРјР° РІ РјРµСЃСЏС†Рµ " + mounth);
+                            System.out.println("Ошибка реконсиляции");
+                            System.out.println("Проблема в месяце " + mounth);
                         }
                     }
                 } else {
-                    System.out.println("РљРѕР»РёС‡РµСЃС‚РІРѕ РјРµСЃСЏС†РµРІ РІ РіРѕРґРѕРІС‹С… РѕС‚С‡РµС‚Р°С… Рё РєРѕР»РёС‡РµСЃС‚РІРѕ РјРµСЃСЏС†РµРІ РІ РјРµСЃСЏС‡РЅС‹С… РѕС‚С‡РµС‚Р°С… " +
-                            "РЅРµ СЂР°РІРЅРѕ, СЃРєРѕСЂРµРµ РІСЃРµРіРѕ РІС‹ РЅРµ Р·Р°РіСЂСѓР·РёР»Рё РєР°РєРѕР№-С‚Рѕ РѕС‚С‡РµС‚");
+                    System.out.println("Количество месяцев в годовых отчетах и количество месяцев в месячных отчетах " +
+                            "не равно, скорее всего вы не загрузили какой-то отчет");
                 }
             }
         }

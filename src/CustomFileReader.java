@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class CustomFileReader {
 
@@ -23,7 +24,7 @@ public class CustomFileReader {
         try {
             return Files.readString(Path.of(path));
         } catch (IOException e) {
-            System.out.println("РќРµРІРѕР·РјРѕР¶РЅРѕ РїСЂРѕС‡РёС‚Р°С‚СЊ С„Р°Р№Р» СЃ РјРµСЃСЏС‡РЅС‹Рј РѕС‚С‡С‘С‚РѕРј. Р’РѕР·РјРѕР¶РЅРѕ, С„Р°Р№Р» РЅРµ РЅР°С…РѕРґРёС‚СЃСЏ РІ РЅСѓР¶РЅРѕР№ РґРёСЂРµРєС‚РѕСЂРёРё.");
+            System.out.println("Невозможно прочитать файл с месячным отчётом. Возможно, файл не находится в нужной директории.");
             return null;
         }
     }
